@@ -70,7 +70,7 @@ async function saveToSupabase() {
     return;
   }
 
-  toast('공유 데이터가 저장되었습니다.');
+
 }
 const part=id=>S.parts.find(p=>p.id===id);
 const vend=id=>S.parts.flatMap(p=>p.vendors).find(v=>v.id===id);
