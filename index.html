@@ -1,4 +1,90 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>UT System 장비 반입 현황 V10</title><style>
+  #loginScreen{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:
+  radial-gradient(circle at top,
+  #f4f0ff 0%,
+  #ececf6 100%);
+}
+
+.login-card{
+  width:380px;
+  max-width:90vw;
+
+  background:#fff;
+
+  border-radius:28px;
+
+  padding:40px;
+
+  text-align:center;
+
+  box-shadow:
+  0 20px 60px rgba(0,0,0,.12);
+}
+
+.login-icon{
+  font-size:52px;
+  margin-bottom:16px;
+}
+
+.login-card h1{
+  margin:0;
+  color:#12284a;
+}
+
+.login-card p{
+  margin:10px 0 25px;
+  color:#666;
+}
+
+.login-card input{
+  width:100%;
+  box-sizing:border-box;
+
+  padding:14px;
+
+  border:1px solid #ddd;
+  border-radius:12px;
+
+  font-size:15px;
+}
+
+.login-card button{
+  width:100%;
+  margin-top:14px;
+
+  border:none;
+
+  padding:14px;
+
+  border-radius:12px;
+
+  font-size:15px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  background:#8b5cf6;
+  color:white;
+}
+
+.login-card button:hover{
+  background:#7c3aed;
+}
+
+#loginError{
+  margin-top:12px;
+  color:#ef4444;
+  font-size:13px;
+}
 :root{--v:#6d3df5;--ink:#17233a;--muted:#718096;--bg:#f6f5fa;--shadow:0 12px 34px #20243612}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 10% -8%,#efeaff,transparent 30%),var(--bg);font-family:Pretendard,"Noto Sans KR",Arial,sans-serif;color:var(--ink)}button,input{font:inherit}button{cursor:pointer}.app{width:min(1180px,calc(100% - 28px));margin:auto;padding:30px 0 70px}.ey{color:var(--v);font-size:13px;font-weight:950}.title{font-size:clamp(27px,4vw,38px);margin:6px 0 4px}.sub,.date{color:var(--muted);font-size:13px}.date{margin-top:9px;font-weight:900}.nav{display:flex;align-items:center;gap:9px;overflow:auto;padding:22px 0 16px;scrollbar-width:none}.pill,.toggle,.add{height:42px;border:1px solid #e1deea;border-radius:999px;background:#fff;padding:0 17px;font-weight:900;color:#5b687d;white-space:nowrap}.pill.on,.toggle.on{background:linear-gradient(135deg,#6935ef,#8b5cf6);color:#fff;border-color:transparent}.trade{position:relative;flex:none}.trade.mode .pill{padding-right:50px}.trade-tools{position:absolute;right:5px;top:50%;transform:translateY(-50%);display:flex}.icon,.pen{width:21px;height:23px;border:0;background:transparent;color:#8590a0;padding:0;display:grid;place-items:center}.icon svg,.pen svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.x{font-size:16px}.add{border-style:dashed;color:var(--v);height:38px}.summary,.card,.part-card{background:#fff;border:1px solid #e8e6ef;border-radius:25px;box-shadow:var(--shadow)}.summary{padding:24px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:16px}.metric{border:1px solid #eceef2;border-radius:18px;padding:17px}.metric small{color:#68748a;font-weight:900}.metric b{display:block;font-size:28px;margin-top:9px}.progress{height:8px;background:#eeeaf8;border-radius:999px;overflow:hidden;margin-top:16px}.progress span{display:block;height:100%;background:linear-gradient(90deg,#6d3df5,#a78bfa)}.part-grid,.vendor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:17px}.part-head,.vendor-head{padding:17px 19px;display:flex;justify-content:space-between;align-items:center}.part-body{padding:17px}.three{display:grid;grid-template-columns:repeat(3,1fr);text-align:center}.three small{display:block;color:#8a94a6}.three b{display:block;margin-top:4px}.tone0{background:#e8f5ff}.tone1{background:#e6fbf1}.tone2{background:#fff0f1}.tone3{background:#fff7dc}.vendor-name{display:flex;align-items:center;gap:6px}.vendor-name strong{font-size:18px}.vedit{height:27px;border:1px solid #d9d3e7;border-radius:999px;background:#fff;color:var(--v);padding:0 9px;font-size:10px;font-weight:950}.vedit.on{background:var(--v);color:#fff}.hide{visibility:hidden;pointer-events:none}.rate-box{display:flex;align-items:center;gap:8px}.rate{text-align:right}.rate b{font-size:18px}.rate small{display:block;color:#111827;font-size:9px;font-weight:950;margin-top:4px}.plus{width:21px;height:21px;border:1px solid currentColor;border-radius:50%;background:transparent;padding:0;display:inline-flex;align-items:center;justify-content:center;line-height:0;opacity:.46}.plus svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.3;stroke-linecap:round}.table{padding:13px 15px 18px}.row{display:grid;grid-template-columns:1.3fr .82fr .68fr .76fr .94fr;gap:4px;align-items:center;padding:11px 2px;border-bottom:1px solid #edf0f3;font-size:12px}.hdr{font-size:10px;color:#8792a4;font-weight:900}.right{text-align:right}.cell{display:flex;align-items:center;justify-content:flex-end;gap:2px}.item{display:flex;align-items:center}.total{border:0;background:#f4f8ff;border-radius:12px;margin-top:4px;padding:12px 7px;font-weight:950}.bar{height:4px;background:#eceaf4;border-radius:999px;overflow:hidden;margin-top:4px}.bar span{display:block;height:100%;background:#9b7af7}.card-actions,.section-actions{
   display:flex;
   justify-content:flex-end;
@@ -44,7 +130,28 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-</head><body><div class="app"><div class="ey">장비 반입 모니터링</div><h1 class="title">UT System 장비 반입 현황</h1><div class="sub">공종별 · 업체별 실시간 장비 반입 관리</div><div id="date" class="date"></div><nav id="nav" class="nav"></nav><main id="main"></main></div><div id="modalBg" class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-head"><h3 id="modalTitle"></h3><button class="icon x" onclick="closeModal()">×</button></div><div id="modalBody"></div></div></div><div id="toast" class="toast"></div><script>/*!
+</head><body><!-- 로그인 화면 -->
+<div id="loginScreen">
+<div class="login-card">
+<div class="login-icon">🔒</div>
+ 
+<h1>UT System</h1>
+<p>장비 반입 현황</p>
+ 
+<input
+type="password"
+id="passwordInput"
+placeholder="비밀번호 입력"
+>
+ 
+<button id="loginBtn">
+입장
+</button>
+ 
+<div id="loginError"></div>
+</div>
+</div>
+  <div class="app"><div class="ey">장비 반입 모니터링</div><h1 class="title">UT System 장비 반입 현황</h1><div class="sub">공종별 · 업체별 실시간 장비 반입 관리</div><div id="date" class="date"></div><nav id="nav" class="nav"></nav><main id="main"></main></div><div id="modalBg" class="modal-bg" onclick="if(event.target===this)closeModal()"><div class="modal" onclick="event.stopPropagation()"><div class="modal-head"><h3 id="modalTitle"></h3><button class="icon x" onclick="closeModal()">×</button></div><div id="modalBody"></div></div></div><div id="toast" class="toast"></div><script>/*!
  * html2canvas 1.4.1 <https://html2canvas.hertzen.com>
  * Copyright (c) 2022 Niklas von Hertzen <https://hertzen.com>
  * Released under MIT License
@@ -215,3 +322,36 @@ date.textContent = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}
 loadFromSupabase();
 startRealtime();
 </script></body></html>
+const APP_PASSWORD = "PT72026!";
+
+function login() {
+
+  const value =
+    document.getElementById("passwordInput").value;
+
+  if(value === APP_PASSWORD){
+
+    document.getElementById("loginScreen")
+      .style.display = "none";
+
+  }else{
+
+    document.getElementById("loginError")
+      .innerText = "비밀번호가 올바르지 않습니다.";
+
+  }
+}
+
+document
+.getElementById("loginBtn")
+.addEventListener("click", login);
+
+document
+.getElementById("passwordInput")
+.addEventListener("keydown", e => {
+
+  if(e.key === "Enter"){
+    login();
+  }
+
+});
