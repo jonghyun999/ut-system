@@ -321,37 +321,33 @@ const days = ['일','월','화','수','목','금','토'];
 date.textContent = `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} (${days[d.getDay()]})`;
 loadFromSupabase();
 startRealtime();
-</script></body></html>
+
 const APP_PASSWORD = "PT72026!";
 
 function login() {
-
   const value =
     document.getElementById("passwordInput").value;
 
-  if(value === APP_PASSWORD){
-
-    document.getElementById("loginScreen")
-      .style.display = "none";
-
-  }else{
-
-    document.getElementById("loginError")
-      .innerText = "비밀번호가 올바르지 않습니다.";
-
+  if (value === APP_PASSWORD) {
+    document.getElementById("loginScreen").style.display = "none";
+  } else {
+    document.getElementById("loginError").innerText =
+      "비밀번호가 올바르지 않습니다.";
   }
 }
 
 document
-.getElementById("loginBtn")
-.addEventListener("click", login);
+  .getElementById("loginBtn")
+  .addEventListener("click", login);
 
 document
-.getElementById("passwordInput")
-.addEventListener("keydown", e => {
+  .getElementById("passwordInput")
+  .addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      login();
+    }
+  });
 
-  if(e.key === "Enter"){
-    login();
-  }
-
-});
+</script>
+</body>
+</html>
