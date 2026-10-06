@@ -429,11 +429,17 @@ async function notifyVendor(id){
       }
     );
 
-    if(res.ok){
-      toast("메일 발송 완료");
-    }else{
-      toast("메일 발송 실패");
-    }
+const msg = await res.text();
+ 
+console.log(msg);
+ 
+if(res.ok){
+alert(msg);
+toast("메일 발송 완료");
+}else{
+alert(msg);
+toast("메일 발송 실패");
+}
 
   }catch(e){
     console.error(e);
