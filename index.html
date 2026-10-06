@@ -409,28 +409,21 @@ document
       login();
     }
   });
-async function notifyVendor(id){
+async function notifyVendor(id) {
 
   const v = vend(id);
 
   try {
 
-   const res = await fetch(
-  "https://hesaemxudyczsajpzqde.supabase.co/functions/v1/send-mail",
-  {
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-      "apikey": SUPABASE_KEY,
-      "Authorization": `Bearer ${SUPABASE_KEY}`
-    },
-    body: JSON.stringify({
-      vendor: v.name,
-      emails:["jeonjonghyun@gmail.com"]
-    })
-  }
-);
-
+    const res = await fetch(
+      "https://hesaemxudyczsajpzqde.supabase.co/functions/v1/send-mail",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`
+        },
         body: JSON.stringify({
           vendor: v.name,
           emails: ["j.hyun@sk.com"]
@@ -455,12 +448,13 @@ async function notifyVendor(id){
     console.error(e);
 
     alert(
-      e?.message || JSON.stringify(e)
+      e?.message || String(e)
     );
 
     toast("메일 발송 오류");
   }
 }
+
 </script>
 </body>
 </html>
