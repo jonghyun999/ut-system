@@ -415,13 +415,22 @@ async function notifyVendor(id){
 
   try {
 
-    const res = await fetch(
-      "https://hesaemxudyczsajpzqde.supabase.co/functions/v1/send-mail",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+   const res = await fetch(
+  "https://hesaemxudyczsajpzqde.supabase.co/functions/v1/send-mail",
+  {
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "apikey": SUPABASE_KEY,
+      "Authorization": `Bearer ${SUPABASE_KEY}`
+    },
+    body: JSON.stringify({
+      vendor: v.name,
+      emails:["j.hyun@sk.com"]
+    })
+  }
+);
+``
         body: JSON.stringify({
           vendor: v.name,
           emails: ["j.hyun@sk.com"]
