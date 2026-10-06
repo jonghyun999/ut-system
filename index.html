@@ -410,11 +410,25 @@ document
     }
   });
 async function notifyVendor(id) {
-
   const v = vend(id);
 
-  try {
+  const p = S.parts.find(part =>
+    part.vendors.some(vendor => vendor.id === id)
+  );
 
+  const m = sum([v]);
+
+  const items = v.items.map(item => ({
+    label: item.label,
+    total: Number(item.total) || 0,
+    today: Number(item.today) || 0,
+    cum: Number(item.cum) || 0,
+    progress: item.total
+      ? ((item.cum / item.total) * 100).toFixed(1)
+      : "0.0"
+  }));
+
+  try {
     const res = await fetch(
       "https://hesaemxudyczsajpzqde.supabase.co/functions/v1/send-mail",
       {
@@ -425,7 +439,13 @@ async function notifyVendor(id) {
           "Authorization": `Bearer ${SUPABASE_KEY}`
         },
         body: JSON.stringify({
+          trade: p?.name || "-",
           vendor: v.name,
+          total: m.total,
+          today: m.today,
+          cum: m.cum,
+          progress: m.progress.toFixed(1),
+          items: items,
           emails: ["koreanmimosa@gmail.com"]
         })
       }
@@ -433,24 +453,17 @@ async function notifyVendor(id) {
 
     const msg = await res.text();
 
-    console.log(msg);
-
     if (res.ok) {
-toast("✅ 메일 전송 완료");
-} else {
-toast("❌ 메일 전송 실패");
-console.error(msg);
-}
+      console.log("메일 발송 결과:", msg);
+      toast("✅ 반입 현황 메일 전송 완료");
+    } else {
+      console.error("메일 발송 실패:", msg);
+      toast("❌ 메일 전송 실패");
+    }
 
   } catch (e) {
-
-    console.error(e);
-
-    alert(
-      e?.message || String(e)
-    );
-
-    toast("메일 발송 오류");
+    console.error("메일 발송 오류:", e);
+    toast("❌ 메일 발송 오류");
   }
 }
 
