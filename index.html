@@ -413,36 +413,42 @@ async function notifyVendor(id){
 
   const v = vend(id);
 
-  try{
+  try {
 
-const res = await fetch(
-"https://hesaemxudyczsajpzqde.supabase.co/functions/v1/send-mail",
-{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-vendor:v.name,
-emails:["j.hyun@sk.com"]
-})
-}
-);
+    const res = await fetch(
+      "https://hesaemxudyczsajpzqde.supabase.co/functions/v1/send-mail",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          vendor: v.name,
+          emails: ["j.hyun@sk.com"]
+        })
+      }
+    );
 
-const msg = await res.text();
- 
-console.log(msg);
- 
-if(res.ok){
-alert(msg);
-toast("메일 발송 완료");
-}else{
-alert(msg);
-toast("메일 발송 실패");
-}
+    const msg = await res.text();
 
-  }catch(e){
+    console.log(msg);
+
+    if (res.ok) {
+      alert(msg);
+      toast("메일 발송 완료");
+    } else {
+      alert(msg);
+      toast("메일 발송 실패");
+    }
+
+  } catch (e) {
+
     console.error(e);
+
+    alert(
+      e?.message || JSON.stringify(e)
+    );
+
     toast("메일 발송 오류");
   }
 }
