@@ -415,19 +415,20 @@ async function notifyVendor(id){
 
   try{
 
-    const res = await fetch(
-      "https://hesaemxudyczsajpzqde.supabase.co/functions/v1/send-mail",
-      {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-          vendor:v.name,
-          emails:["j.hyun@sk.com"]
-        })
-      }
-    );
+   JavaScript
+const res = await fetch(
+"https://hesaemxudyczsajpzqde.supabase.co/functions/v1/send-mail",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+vendor:v.name,
+emails:["j.hyun@sk.com"]
+})
+}
+);
 
 const msg = await res.text();
  
