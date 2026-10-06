@@ -436,12 +436,11 @@ async function notifyVendor(id) {
     console.log(msg);
 
     if (res.ok) {
-      alert(msg);
-      toast("메일 발송 완료");
-    } else {
-      alert(msg);
-      toast("메일 발송 실패");
-    }
+toast("✅ 메일 전송 완료");
+} else {
+toast("❌ 메일 전송 실패");
+console.error(msg);
+}
 
   } catch (e) {
 
